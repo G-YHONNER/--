@@ -169,6 +169,7 @@ function animate() {
 }
 
 window.onload = () => {
-  updateRoseColor(0, false);
+  updateRoseColor(Math.floor(Math.random() * COLORS.length), false);
   animate();
 };
+
