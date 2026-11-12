@@ -11,6 +11,9 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
 }
 
 /* Fondo azul nocturno original */
@@ -85,11 +88,12 @@ body {
 .tap-zone {
   position: fixed;
   top: 0;
-  width: 18%;
+  width: 25%;
   height: 100%;
   z-index: 20;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .tap-zone.left  { left: 0; }
@@ -111,6 +115,9 @@ body {
   height: 400px;
   position: relative;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  outline: none;
 }
 
 /* Base de todos los pétalos */
