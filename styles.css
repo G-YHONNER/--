@@ -62,13 +62,15 @@ body {
 }
 
 .title-box h2 {
-  font-family: 'Great Vibes', cursive;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
   font-size: clamp(2.3rem, 6vw, 3.5rem);
-  font-weight: 400;
   color: #ffffff;
   text-shadow: 0 0 15px var(--c-glow), 0 0 30px var(--c-glow);
   margin-bottom: 4px;
   transition: text-shadow 0.4s ease;
+  letter-spacing: 2px;
 }
 
 .title-box p {
@@ -395,3 +397,4 @@ body {
     opacity: 0;
   }
 }
+
