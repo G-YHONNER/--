@@ -65,15 +65,15 @@ body {
 }
 
 .title-box h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(2.3rem, 6vw, 3.5rem);
+  font-family: 'Cascadia Code', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
   color: #ffffff;
   text-shadow: 0 0 15px var(--c-glow), 0 0 30px var(--c-glow);
   margin-bottom: 4px;
   transition: text-shadow 0.4s ease;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .title-box p {
