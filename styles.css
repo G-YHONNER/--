@@ -1,0 +1,397 @@
+:root {
+  --c-main: #e01e5a;
+  --c-mid: #b51244;
+  --c-back: #d11952;
+  --c-light: #ff7aa2;
+  --c-glow: rgba(255, 46, 108, 0.85);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* Fondo azul nocturno original */
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 45%, #0d1b3a 0%, #071024 55%, #030712 100%);
+  font-family: 'Montserrat', sans-serif;
+}
+
+#canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Luz de fondo suave */
+.ambient-light {
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c-glow) 0%, transparent 70%);
+  opacity: 0.35;
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+
+/* Texto superior con la frase para Dianna Marisol */
+.title-box {
+  position: fixed;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  width: 92%;
+  max-width: 600px;
+  pointer-events: none;
+}
+
+.title-box h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.3rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: #ffffff;
+  text-shadow: 0 0 15px var(--c-glow), 0 0 30px var(--c-glow);
+  margin-bottom: 4px;
+  transition: text-shadow 0.4s ease;
+}
+
+.title-box p {
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Flechas laterales originales */
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px var(--c-glow);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.arrow.left {
+  left: 20px;
+}
+
+.arrow.right {
+  right: 20px;
+}
+
+/* ==========================================================================
+   DISEÑO Y ORDEN DE Z-INDEX DE LA ROSA (Idéntico a la imagen)
+   ========================================================================== */
+.rose-stage {
+  position: fixed;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.container {
+  width: 200px;
+  height: 400px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Base de todos los pétalos */
+.petals > div {
+  position: absolute;
+  background: var(--c-main);
+  width: 45px;
+  height: 80px;
+  top: 55px;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Pétalo central superior (#1) - detrás de los pétalos frontales */
+.petals > div:nth-child(1) {
+  border-radius: 15px;
+  left: 80px;
+  top: 42px;
+  z-index: 4;
+  background: linear-gradient(180deg, var(--c-light) 0%, var(--c-main) 80%);
+  box-shadow: 0 0 35px var(--c-glow);
+}
+
+/* Pétalos principales del frente (#2 izquierdo y #3 derecho) - AL FRENTE (z-index: 6) */
+.petals > div:nth-child(2) {
+  left: 60px;
+  top: 55px;
+  z-index: 6;
+  border-radius: 0px 30px 0px 30px;
+  background: linear-gradient(165deg, var(--c-light) 0%, var(--c-main) 55%, var(--c-mid) 100%);
+  box-shadow:
+    inset 0 0 20px var(--c-mid),
+    0 0 25px var(--c-glow);
+  transform-origin: bottom right;
+}
+
+.petals > div:nth-child(3) {
+  left: 105px;
+  top: 55px;
+  z-index: 6;
+  border-radius: 30px 0px 30px 0px;
+  background: linear-gradient(195deg, var(--c-light) 0%, var(--c-main) 55%, var(--c-mid) 100%);
+  box-shadow:
+    inset 0 0 20px var(--c-mid),
+    0 0 25px var(--c-glow);
+  transform-origin: bottom left;
+}
+
+/* Pétalos laterales abiertos (#4 izquierdo y #5 derecho) - CAPA MEDIA (z-index: 5) */
+.petals > div:nth-child(4) {
+  left: 60px;
+  top: 58px;
+  z-index: 5;
+  border-radius: 0px 30px 0px 30px;
+  background: linear-gradient(155deg, var(--c-light) 0%, var(--c-main) 60%, var(--c-mid) 100%);
+  box-shadow:
+    inset 0 0 20px var(--c-mid),
+    0 0 25px var(--c-glow);
+  transform-origin: bottom right;
+  transform: rotate(-16deg);
+  animation: bloom4 3.5s ease-in-out infinite alternate;
+}
+
+.petals > div:nth-child(5) {
+  left: 105px;
+  top: 58px;
+  z-index: 5;
+  border-radius: 30px 0px 30px 0px;
+  background: linear-gradient(205deg, var(--c-light) 0%, var(--c-main) 60%, var(--c-mid) 100%);
+  box-shadow:
+    inset 0 0 20px var(--c-mid),
+    0 0 25px var(--c-glow);
+  transform-origin: bottom left;
+  transform: rotate(16deg);
+  animation: bloom5 3.5s ease-in-out infinite alternate;
+}
+
+/* Pétalos traseros superiores (#6 izquierdo y #7 derecho) - AL FONDO (z-index: 3) e iluminados */
+.petals > div:nth-child(6),
+.petals > div:nth-child(7) {
+  width: 45px;
+  height: 80px;
+  top: 47px;
+  z-index: 3;
+  background: linear-gradient(180deg, var(--c-light) 0%, var(--c-back) 65%, var(--c-mid) 100%);
+  box-shadow:
+    inset 0 6px 14px rgba(255, 255, 255, 0.4),
+    0 0 35px var(--c-glow);
+}
+
+.petals > div:nth-child(6) {
+  left: 60px;
+  border-radius: 0px 30px 0px 30px;
+  transform-origin: bottom right;
+  transform: rotate(-7deg);
+  animation: bloom6 3.5s ease-in-out infinite alternate;
+}
+
+.petals > div:nth-child(7) {
+  left: 105px;
+  border-radius: 30px 0px 30px 0px;
+  transform-origin: bottom left;
+  transform: rotate(7deg);
+  animation: bloom7 3.5s ease-in-out infinite alternate;
+}
+
+/* Pétalos caídos sincronizados con el color actual */
+.deadPetals > div {
+  position: absolute;
+  background: var(--c-main);
+  width: 20px;
+  height: 15px;
+  top: 120px;
+  border-radius: 0px 30px 0px 30px;
+  box-shadow: 0 0 15px var(--c-glow);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.deadPetals > div:nth-child(1) {
+  left: 105px;
+  transform: rotate(-20deg);
+  animation: falling 12s 1s ease-in-out infinite;
+}
+
+.deadPetals > div:nth-child(2) {
+  left: 85px;
+  transform: rotate(-20deg);
+  animation: falling 15s 6s ease-in-out infinite;
+}
+
+.deadPetals > div:nth-child(3) {
+  left: 85px;
+  top: 392px;
+  opacity: 0.45;
+  transform: rotate(-8deg);
+}
+
+.deadPetals > div:nth-child(4) {
+  left: 96px;
+  top: 392px;
+  opacity: 0.45;
+  transform: rotate(10deg);
+}
+
+/* Hojas y tallo originales (z-index detrás de los pétalos) */
+.leaves > div:nth-last-child(1) {
+  position: absolute;
+  width: 55px;
+  height: 30px;
+  background: #338f37;
+  top: 112px;
+  left: 75px;
+  border-radius: 100px;
+  z-index: 2;
+}
+
+.leaves > div:nth-child(1) {
+  position: absolute;
+  width: 6px;
+  height: 210px;
+  background: #054c05;
+  top: 132px;
+  left: 100px;
+  border-radius: 0 0 100px 100px;
+  z-index: 1;
+}
+
+.leaves > div:nth-child(2) {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  border-radius: 5px 40px 20px 40px;
+  background: #054c05;
+  transform-origin: bottom;
+  transform: rotate(-30deg);
+  top: 180px;
+  left: 80px;
+  box-shadow: inset 5px 5px #066406;
+  z-index: 2;
+}
+
+.leaves > div:nth-child(3) {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  border-radius: 40px 5px 40px 20px;
+  background: #054c05;
+  transform-origin: bottom;
+  transform: rotate(30deg);
+  top: 150px;
+  left: 95px;
+  box-shadow: inset -5px 5px #066406;
+  z-index: 2;
+}
+
+/* Espinas originales */
+.thorns > div {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 140px;
+}
+
+.thorns > div:nth-child(odd) {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #054c05;
+  left: 105px;
+}
+
+.thorns > div:nth-child(even) {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #054c05;
+  left: 95px;
+}
+
+.thorns > div:nth-child(1) { top: 200px; }
+.thorns > div:nth-child(2) { top: 170px; }
+.thorns > div:nth-child(3) { top: 230px; }
+.thorns > div:nth-child(4) { top: 260px; }
+
+/* Animaciones suaves sin desordenar la forma de la rosa */
+@keyframes bloom4 {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(-19deg); }
+}
+@keyframes bloom5 {
+  0% { transform: rotate(15deg); }
+  100% { transform: rotate(19deg); }
+}
+@keyframes bloom6 {
+  0% { transform: rotate(-6deg); }
+  100% { transform: rotate(-9deg); }
+}
+@keyframes bloom7 {
+  0% { transform: rotate(6deg); }
+  100% { transform: rotate(9deg); }
+}
+
+@keyframes falling {
+  0% {
+    top: 120px;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    top: 385px;
+    opacity: 0.85;
+    transform: rotate(15deg);
+  }
+  100% {
+    top: 392px;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti, Dianna Marisol - Rosa 24 Colores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Canvas de partículas -->
+  <canvas id="canvas"></canvas>
+
+  <!-- Luz ambiental -->
+  <div class="ambient-light"></div>
+
+  <!-- Dedicatoria arriba -->
+  <div class="title-box">
+    <h2>Para ti, Dianna Marisol</h2>
+    <p id="colorLabel">1 / 24 • Rojo Carmesí</p>
+  </div>
+
+  <!-- Flechas para cambiar los 24 colores -->
+  <div class="arrow left" id="prevColor" title="Color Anterior">&#10094;</div>
+  <div class="arrow right" id="nextColor" title="Color Siguiente">&#10095;</div>
+
+  <!-- Estructura original de la rosa (sin frasco y sin barra inferior) -->
+  <div class="rose-stage">
+    <div class="container" id="rose" title="Toca la flor para ver destellos">
+      <div class="thorns">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="leaves">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="petals">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="deadPetals">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
